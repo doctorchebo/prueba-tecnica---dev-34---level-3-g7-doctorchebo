@@ -17,40 +17,41 @@ public class Contact {
     private Long userId;
     private String name;
     private String email;
+    private String phone;
 
     public Contact() { }
 
-    public Contact(String name, String email) {
+    public Contact(String name, String email, String phone) {
         this.name = name;
         this.email = email;
+        this.phone = phone;
     }
 
     @Override
-    public boolean equals(Object that) {
-        if (this == that) return true;
-        if (that == null || getClass() != that.getClass()) return false;
-        Contact contact = (Contact) that;
-        return Objects.equals(id, contact.id) &&
-               Objects.equals(userId, ((Contact) that).userId) &&
-               Objects.equals(name, contact.name) &&
-               Objects.equals(email, contact.email);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return id.equals(contact.id) && userId.equals(contact.userId) && name.equals(contact.name) && email.equals(contact.email) && phone.equals(contact.phone);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, email, userId);
+        return Objects.hash(id, userId, name, email, phone);
     }
 
     @Override
     public String toString() {
         return "Contact{" +
                 "id=" + id +
+                ", userId=" + userId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
 
     public ContactData toEntity() {
-        return new ContactData(id, 1L, name, email, new HashSet<>());
+        return new ContactData(id, 1L, name, email, phone, new HashSet<>());
     }
 }

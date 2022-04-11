@@ -76,6 +76,10 @@ public class ContactService implements IContactService {
             throw new RequiredFieldException("name");
         }
 
+        if (contact.getPhone() == null || contact.getPhone().isEmpty()) {
+            throw new RequiredFieldException("phone");
+        }
+
         Optional<ContactData> existingContact = contactRepository.findByEmail(contact.getEmail());
 
         if (existingContact.isPresent()) {

@@ -25,6 +25,11 @@ const columns = [
     dataIndex: "email",
     width: "20%",
   },
+  {
+    title: "Phone",
+    dataIndex: "phone",
+    width: "20%",
+  },
 ];
 function ContactList({ history }) {
   console.log("Contact List retrieved");
