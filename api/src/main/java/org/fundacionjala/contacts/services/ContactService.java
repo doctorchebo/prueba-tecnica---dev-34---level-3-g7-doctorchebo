@@ -80,6 +80,10 @@ public class ContactService implements IContactService {
             throw new RequiredFieldException("phone");
         }
 
+        if (contact.getPhone().length()<8){
+            throw new RequiredFieldException("phone must be at least 8 digits");
+        }
+
         Optional<ContactData> existingContact = contactRepository.findByEmail(contact.getEmail());
 
         if (existingContact.isPresent()) {
