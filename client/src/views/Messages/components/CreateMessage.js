@@ -3,6 +3,7 @@ import { PageWithHeader } from "../../../components";
 import { Form, Input, Button, message } from "antd";
 import { MailOutlined, UserAddOutlined } from "@ant-design/icons";
 import { messageService } from "../../../services";
+import ContactList from "../../Contacts/components/ContactList";
 
 function CreateMessage({ history }) {
   const onFinish = useCallback(
@@ -26,31 +27,27 @@ function CreateMessage({ history }) {
       <section style={{ width: "500px", padding: "40px" }}>
         <Form name="create_message" onFinish={onFinish}>
           <Form.Item
-            name="email"
+            name="contacts"
             rules={[
               {
-                type: "email",
-                message: "The input is not valid E-mail!",
-              },
-              {
                 required: true,
-                message: "Please input your E-mail!",
+                message: "Please input at least one contact!",
               },
             ]}
           >
-            <Input prefix={<MailOutlined />} placeholder="E-mail" />
+            <Input prefix={<ContactList />} placeholder="Contacts" />
           </Form.Item>
           <Form.Item
-            name="name"
+            name="content"
             rules={[
               {
                 required: true,
-                message: "Please input your name!",
+                message: "The message cannot be empty!",
                 whitespace: true,
               },
             ]}
           >
-            <Input prefix={<UserAddOutlined />} placeholder="Name" />
+            <Input prefix={<MessageEvent />} placeholder="Content" />
           </Form.Item>
           <Form.Item>
             <Button style={{ width: "100%" }} type="primary" htmlType="submit">
